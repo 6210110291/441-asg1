@@ -76,7 +76,6 @@ namespace prog2017_019_try_load_image04
             int x, y;
 
             //shows only Green component
-
             stopWatch1.Reset();
             stopWatch1.Start();
             for (x = 0; x < image1.Width; x++)
@@ -119,8 +118,6 @@ namespace prog2017_019_try_load_image04
 
         }
 
-        
-
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -152,10 +149,10 @@ namespace prog2017_019_try_load_image04
             // Copy the RGB values into the array.
             System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
 
-            for (int y=0; y<image1.Height; y++) // change column เปลี่ยนคอลัมน์
+            for (int y=0; y<image1.Height; y++) // change column 
             {
-                int start_line = y * dstData.Stride; // change row เปลี่ยนแถว
-                for (int x = 0; x < image1.Width * 3; x += 3) // ไปตามแนวแกน x (ความกว้าง)
+                int start_line = y * dstData.Stride; // change row 
+                for (int x = 0; x < image1.Width * 3; x += 3) 
                 {
                     rgbValues[x + start_line] = 0;  //blue
                     rgbValues[x+1 + start_line] = 0;//green
@@ -171,7 +168,6 @@ namespace prog2017_019_try_load_image04
             pictureBox1.Image = image1;
             textBox1.AppendText(newLine + newLine + "Time for extracting Red component using LockBit = " + stopWatch1.ElapsedMilliseconds.ToString() + " mS\r\n");
             //-------------------------------------------------------------------------------------------------------------------------------------------------------------
-            // แบบนี้ใช้ไม่ได้ กับ parallel.for เนื่องจาก GetPixel และ SetPixel จะไปล๊อกหน่วยความจำ ทำให้ไม่สามารถเข้าถึงพร้อมกันได้หลายเธรด
             /*            stopWatch1.Reset();
                         stopWatch1.Start();
                         Parallel.For(0, image1.Height, y =>            
@@ -260,8 +256,6 @@ namespace prog2017_019_try_load_image04
             textBox1.AppendText("bytes = " + bytes.ToString() + "\r\n");
             textBox1.AppendText("image width*3 = " + (image1.Width*3).ToString() + "\r\n");
             textBox1.AppendText("dstData.Stride = " + dstData.Stride.ToString() + "\r\n");
-
-
 
             // Copy the RGB values into the array.
             System.Runtime.InteropServices.Marshal.Copy(ptr, rgbValues, 0, bytes);
